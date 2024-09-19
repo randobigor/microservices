@@ -1,6 +1,7 @@
 package com.pingpongchamp.game_service.controller;
 
 
+import com.pingpongchamp.contracts.Player;
 import com.pingpongchamp.contracts.PlayerDto;
 import com.pingpongchamp.game_service.proxy.PlayerProxy;
 
@@ -23,7 +24,7 @@ public class GameController {
   private PlayerProxy playerProxy;
 
   @GetMapping
-  public List<PlayerDto> test() {
-    return playerProxy.getAllPlayers();//test
+  public List<Player> test() {
+    return playerProxy.getAllPlayers();
   }
 }

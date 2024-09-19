@@ -31,13 +31,13 @@ public class Game {
   private long id;
 
   @Column(name = "first_player_id")
-  private long firstPlayer;
+  private long firstPlayerId;
 
   @Column(name = "second_player_id")
-  private long secondPlayer;
+  private long secondPlayerId;
 
   @Column(name = "start_tm")
-  private LocalDateTime startTm;
+  private LocalDateTime startDateTime;
 
   @Column(name = "final_score")
   private String finalScore;

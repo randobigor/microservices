@@ -1,7 +1,5 @@
 package com.pingpongchamp.player_service.controller;
 
-import com.pingpongchamp.contracts.PlayerDto;
-import com.pingpongchamp.player_service.mapper.PlayerMapper;
 import com.pingpongchamp.player_service.model.Player;
 import com.pingpongchamp.player_service.repository.PlayerRepository;
 
@@ -26,12 +24,9 @@ public class PlayerController {
   @Resource
   private PlayerRepository playerRepository;
 
-  @Resource
-  private PlayerMapper playerMapper;
-
   @GetMapping
-  public List<PlayerDto> retrieveAllPlayers() {
-    return playerRepository.findAll().stream().map(player -> playerMapper.toDto(player)).toList();
+  public List<Player> retrieveAllPlayers() {
+    return playerRepository.findAll();
   }
 
   @PostMapping

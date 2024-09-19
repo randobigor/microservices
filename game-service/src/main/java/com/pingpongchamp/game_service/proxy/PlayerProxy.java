@@ -1,5 +1,6 @@
 package com.pingpongchamp.game_service.proxy;
 
+import com.pingpongchamp.contracts.Player;
 import com.pingpongchamp.contracts.PlayerDto;
 
 import org.springframework.cloud.openfeign.FeignClient;
@@ -15,5 +16,5 @@ import java.util.List;
 public interface PlayerProxy {
 
   @GetMapping("/player")
-  List<PlayerDto> getAllPlayers();
+  List<Player> getAllPlayers();
 }
