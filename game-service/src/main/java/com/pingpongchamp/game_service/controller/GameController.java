@@ -24,6 +24,6 @@ public class GameController {
 
   @GetMapping
   public List<PlayerDto> test() {
-    return playerProxy.getAllPlayers();
+    return playerProxy.getAllPlayers();//test
   }
 }
