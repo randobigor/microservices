@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,6 +48,12 @@ public class GameController {
     }
 
     return new ResponseEntity<>(HttpStatus.CREATED);
+  }
+
+  @PostMapping
+  public void createGame(@RequestBody Game game) {
+    //You need to check if this is the last game. E.g. if game.stage == tournaments.stages
+    //In this case you need to increment number of tournamentsWon for player
   }
 
   @GetMapping("/tournament-winners")

@@ -35,6 +35,8 @@ public class PlayerController {
     return playerRepository.findById(id).orElse(null);
   }
 
+  
+  
   @GetMapping("/order-by-score")
   public List<Player> retrieveAllPlayersOrderedByPoints() {
     return playerRepository.findAllByOrderByScoreDesc();

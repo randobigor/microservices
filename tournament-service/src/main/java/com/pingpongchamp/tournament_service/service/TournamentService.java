@@ -2,6 +2,7 @@ package com.pingpongchamp.tournament_service.service;
 
 import com.pingpongchamp.common.dtos.GameDto;
 import com.pingpongchamp.common.dtos.PlayerDto;
+import com.pingpongchamp.tournament_service.dto.TournamentAndWinnerDto;
 import com.pingpongchamp.tournament_service.dto.TournamentWinnerDto;
 import com.pingpongchamp.tournament_service.model.Tournament;
 import com.pingpongchamp.tournament_service.proxy.GameProxy;
@@ -14,8 +15,12 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
@@ -69,20 +74,37 @@ public class TournamentService {
     return games;
   }
 
-  public List<TournamentWinnerDto> getTournamentWinners() {
-    List<TournamentWinnerDto> tournamentWinners = new ArrayList<>();
+  public List<TournamentAndWinnerDto> getTournamentsAndWinners() {
+    List<TournamentAndWinnerDto> tournamentWinners = new ArrayList<>();
 
     List<Tournament> tournaments = tournamentRepository.findAll();
     List<GameDto> gameWinners = gameProxy.getTournamentWinners();
 
     for (GameDto game : gameWinners) {
-      TournamentWinnerDto tournamentWinner = new TournamentWinnerDto();
+      TournamentAndWinnerDto tournamentWinner = new TournamentAndWinnerDto();
       tournamentWinner.setTournament(tournaments.stream().filter(t -> game.getTournamentId() == t.getId()).findFirst().get());
       tournamentWinner.setWinner(playerProxy.getPlayerById(game.getWinnerId()));
       tournamentWinners.add(tournamentWinner);
     }
 
     return tournamentWinners;
+  }
+
+  public List<TournamentWinnerDto> getTournamentWinners() {
+    List<PlayerDto> winners = new ArrayList<>();
+
+    List<GameDto> gamesAndWinners = gameProxy.getTournamentWinners();
+
+    for (GameDto gameWinner : gamesAndWinners) {
+      winners.add(playerProxy.getPlayerById(gameWinner.getWinnerId()));
+    }
+
+    return winners.stream()
+        .collect(Collectors.groupingBy(player -> player, Collectors.counting()))
+        .entrySet().stream()
+        .map(entry -> new TournamentWinnerDto(entry.getKey(), entry.getValue()))
+        .sorted(Collections.reverseOrder(Comparator.comparingInt(p -> p.getPlayer().getScore())))
+        .toList();
   }
 
   private void compensateTournament(Tournament tournament) {

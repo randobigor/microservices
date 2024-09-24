@@ -1,5 +1,6 @@
 package com.pingpongchamp.tournament_service.controller;
 
+import com.pingpongchamp.tournament_service.dto.TournamentAndWinnerDto;
 import com.pingpongchamp.tournament_service.dto.TournamentWinnerDto;
 import com.pingpongchamp.tournament_service.model.Tournament;
 import com.pingpongchamp.tournament_service.service.TournamentService;
@@ -26,10 +27,15 @@ public class TournamentController {
 
   @PostMapping("/create")
   public void createTournament() {
-
+    //TODO 
   }
 
-  @GetMapping("/winners")
+  @GetMapping("/tournaments-and-winners")
+  public List<TournamentAndWinnerDto> getTournamentsAndWinners() {
+    return tournamentService.getTournamentsAndWinners();
+  }
+
+  @GetMapping("/tournament-winners")
   public List<TournamentWinnerDto> getTournamentWinners() {
     return tournamentService.getTournamentWinners();
   }

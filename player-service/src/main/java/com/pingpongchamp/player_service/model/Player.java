@@ -37,4 +37,7 @@ public class Player {
 
   @Column(name = "score")
   private Integer score;
+
+  @Column(name = "tournaments_won")
+  private Integer tournamentsWon;
 }
