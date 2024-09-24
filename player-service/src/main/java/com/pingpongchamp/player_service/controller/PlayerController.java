@@ -4,6 +4,7 @@ import com.pingpongchamp.player_service.model.Player;
 import com.pingpongchamp.player_service.repository.PlayerRepository;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,9 +26,20 @@ public class PlayerController {
   private PlayerRepository playerRepository;
 
   @GetMapping
-  public List<Player> retrieveAllPlayers() {
+  public List<Player> getAllPlayers() {
     return playerRepository.findAll();
   }
+
+  @GetMapping("/{id}")
+  public Player getPlayerById(@PathVariable long id) {
+    return playerRepository.findById(id).orElse(null);
+  }
+
+  @GetMapping("/order-by-score")
+  public List<Player> retrieveAllPlayersOrderedByPoints() {
+    return playerRepository.findAllByOrderByScoreDesc();
+  }
+
 
   @PostMapping
   public void addPlayer(@RequestBody Player player) {

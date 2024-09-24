@@ -10,25 +10,28 @@
         <module name="config-server" />
         <module name="tournament-service" />
         <module name="player-service" />
-        <module name="contracts" />
         <module name="game-service" />
+        <module name="common" />
         <module name="naming-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="microservices.config-server" target="17" />
       <module name="microservices.naming-server" target="17" />
+      <module name="orchestrator" target="17" />
+      <module name="ping-pong-championship-microservices" target="1.5" />
       <module name="user-service" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="common" options="-parameters" />
       <module name="config-server" options="-parameters" />
-      <module name="contracts" options="-parameters" />
       <module name="game-service" options="-parameters" />
       <module name="microservices.config-server" options="-parameters" />
       <module name="microservices.naming-server" options="-parameters" />
       <module name="naming-server" options="-parameters" />
+      <module name="orchestrator" options="-parameters" />
       <module name="player-service" options="-parameters" />
       <module name="tournament-service" options="-parameters" />
       <module name="user-service" options="-parameters" />

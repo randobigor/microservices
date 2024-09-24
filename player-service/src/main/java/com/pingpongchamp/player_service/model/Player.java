@@ -34,4 +34,7 @@ public class Player {
 
   @Column(name = "date_of_birth")
   private LocalDate dateOfBirth;
+
+  @Column(name = "score")
+  private Integer score;
 }

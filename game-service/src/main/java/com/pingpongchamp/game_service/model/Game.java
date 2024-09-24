@@ -7,8 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,21 +28,27 @@ public class Game {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
+  @Column(name = "tournament_id")
+  private long tournamentId;
+
   @Column(name = "first_player_id")
   private long firstPlayerId;
 
   @Column(name = "second_player_id")
   private long secondPlayerId;
 
-  @Column(name = "start_tm")
+  @Column(name = "start_date_time")
   private LocalDateTime startDateTime;
 
   @Column(name = "final_score")
   private String finalScore;
 
   @Column(name = "winner_id")
-  private long winnerId;
+  private Long winnerId;
 
   @Column(name = "duration")
-  private int duration;
+  private Integer duration;
+
+  @Column(name = "stage")
+  private Integer stage;
 }
