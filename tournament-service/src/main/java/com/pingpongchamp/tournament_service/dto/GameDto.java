@@ -1,4 +1,4 @@
-package com.pingpongchamp.game_service.dto;
+package com.pingpongchamp.tournament_service.dto;
 
 import java.time.LocalDateTime;
 

@@ -1,9 +1,9 @@
-package com.pingpongchamp.game_service.dto;
+package com.pingpongchamp.player_service.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,15 +16,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-@Builder
-public class GameDto {
-  private long id;
-  private long tournamentId;
-  private long firstPlayerId;
-  private long secondPlayerId;
-  private LocalDateTime startDateTime;
+public class DefeatedPlayerDto {
+  private String opponentName;
+  private LocalDateTime gameStartTime;
   private String finalScore;
-  private Long winnerId;
   private Integer duration;
-  private Integer stage;
 }

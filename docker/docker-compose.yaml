@@ -1,0 +1,39 @@
+version: '3.3'
+services:
+  eureka-server:
+    container_name: eureka-server
+    image: pingpongchamp/naming-server:0.0.1-SNAPSHOT
+    ports:
+      - "8761:8761"
+    networks:
+      ppc-bridge-network:
+        aliases:
+          - "eureka-server"
+  
+  player-service:
+    image: pingpongchamp/player-service:0.0.1-SNAPSHOT
+    ports:
+      - "8080:8080"
+    links:
+      - eureka-server
+    networks:
+      ppc-bridge-network:
+        aliases:
+          - "player-service"
+  
+  game-service:
+    image: pingpongchamp/game-service:0.0.1-SNAPSHOT
+    ports:
+      - "8280:8280"
+    links:
+      - eureka-server
+    networks: 
+      ppc-bridge-network:
+        aliases:
+          - "game-service"
+
+
+networks:
+  ppc-bridge-network:
+    external: true
+    driver: bridge

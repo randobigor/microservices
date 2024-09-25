@@ -74,11 +74,7 @@
 			<artifactId>spring-kafka</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>com.pingpongchamp</groupId>
-			<artifactId>common</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>

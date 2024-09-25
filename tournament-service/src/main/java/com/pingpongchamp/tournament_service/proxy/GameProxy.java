@@ -1,7 +1,7 @@
 package com.pingpongchamp.tournament_service.proxy;
 
-import com.pingpongchamp.common.dtos.GameDto;
-import com.pingpongchamp.common.dtos.PlayerDto;
+
+import com.pingpongchamp.common.dto.GameDto;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.HttpStatus;

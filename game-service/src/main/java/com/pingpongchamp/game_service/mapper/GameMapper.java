@@ -1,6 +1,7 @@
 package com.pingpongchamp.game_service.mapper;
 
-import com.pingpongchamp.common.dtos.GameDto;
+
+import com.pingpongchamp.game_service.dto.GameDto;
 import com.pingpongchamp.game_service.model.Game;
 
 import org.springframework.stereotype.Component;

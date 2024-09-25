@@ -1,7 +1,7 @@
 package com.pingpongchamp.tournament_service.service;
 
-import com.pingpongchamp.common.dtos.GameDto;
-import com.pingpongchamp.common.dtos.PlayerDto;
+import com.pingpongchamp.common.dto.GameDto;
+import com.pingpongchamp.common.dto.PlayerDto;
 import com.pingpongchamp.tournament_service.dto.TournamentAndWinnerDto;
 import com.pingpongchamp.tournament_service.dto.TournamentWinnerDto;
 import com.pingpongchamp.tournament_service.model.Tournament;
@@ -18,8 +18,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import jakarta.annotation.Resource;

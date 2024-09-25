@@ -1,4 +1,4 @@
-package com.pingpongchamp.common.dtos;
+package com.pingpongchamp.common.dto;
 
 import java.time.LocalDateTime;
 

@@ -1,4 +1,4 @@
-package com.pingpongchamp.common.dtos;
+package com.pingpongchamp.common.dto;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -7,6 +7,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+/**
+ * @author ibodnar@amsoft-group.com
+ */
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,8 +25,12 @@ public class PlayerDto {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
 
     PlayerDto player = (PlayerDto) o;
 

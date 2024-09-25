@@ -1,6 +1,6 @@
 package com.pingpongchamp.tournament_service.dto;
 
-import com.pingpongchamp.common.dtos.PlayerDto;
+import com.pingpongchamp.common.dto.PlayerDto;
 import com.pingpongchamp.tournament_service.model.Tournament;
 
 import lombok.AllArgsConstructor;
