@@ -27,7 +27,7 @@ services:
       - "8280:8280"
     links:
       - eureka-server
-    networks: 
+    networks:
       ppc-bridge-network:
         aliases:
           - "game-service"

@@ -1,6 +1,7 @@
-package com.pingpongchamp.tournament_service.dto;
+package com.pingpongchamp.game_service.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,8 +14,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class TournamentWinnerDto {
-  
-  private PlayerDto player;
-  private long tournamentsWon;
+@Builder
+public class PlayerDebug {
+  private Object player;
+  private String port;
 }

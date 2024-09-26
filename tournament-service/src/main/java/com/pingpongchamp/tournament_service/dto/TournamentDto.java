@@ -1,5 +1,7 @@
 package com.pingpongchamp.tournament_service.dto;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,8 +15,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class TournamentWinnerDto {
-  
-  private PlayerDto player;
-  private long tournamentsWon;
+public class TournamentDto {
+
+  private Integer stage;
+  private List<TournamentGameDto> game;
 }

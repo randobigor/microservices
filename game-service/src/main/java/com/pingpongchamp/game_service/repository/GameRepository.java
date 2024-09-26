@@ -13,4 +13,8 @@ public interface GameRepository extends JpaRepository<Game, Long> {
   List<Game> getTournamentWinners();
 
   List<Game> findAllByWinnerId(long winnerId);
+  
+  List<Game> findAllByTournamentId(long tournamentId);
+  
+  void deleteAllByTournamentId(long tournamentId);
 }

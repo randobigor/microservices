@@ -1,5 +1,7 @@
 package com.pingpongchamp.tournament_service.dto;
 
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,8 +15,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class TournamentWinnerDto {
-  
-  private PlayerDto player;
-  private long tournamentsWon;
+public class TournamentGameDto {
+  private long firstPlayerId;
+  private long secondPlayerId;
+  private LocalDateTime startDateTime;
+  private String finalScore;
+  private Long winnerId;
+  private Integer duration;
 }

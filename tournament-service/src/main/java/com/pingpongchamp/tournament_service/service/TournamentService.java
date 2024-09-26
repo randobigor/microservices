@@ -1,7 +1,7 @@
 package com.pingpongchamp.tournament_service.service;
 
-import com.pingpongchamp.common.dto.GameDto;
-import com.pingpongchamp.common.dto.PlayerDto;
+import com.pingpongchamp.tournament_service.dto.GameDto;
+import com.pingpongchamp.tournament_service.dto.PlayerDto;
 import com.pingpongchamp.tournament_service.dto.TournamentAndWinnerDto;
 import com.pingpongchamp.tournament_service.dto.TournamentWinnerDto;
 import com.pingpongchamp.tournament_service.model.Tournament;
@@ -9,7 +9,6 @@ import com.pingpongchamp.tournament_service.proxy.GameProxy;
 import com.pingpongchamp.tournament_service.proxy.PlayerProxy;
 import com.pingpongchamp.tournament_service.repository.TournamentRepository;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +17,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+import feign.FeignException;
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
 
@@ -48,9 +49,10 @@ public class TournamentService {
     tournament = tournamentRepository.save(tournament);
 
     List<GameDto> games = generateTournamentGridGames(tournament, players);
-    ResponseEntity<HttpStatus> status = gameProxy.createGames(games);
 
-    if (HttpStatus.BAD_REQUEST.equals(status.getStatusCode())) {
+    try {
+      gameProxy.createGames(games);
+    } catch (FeignException e) {
       compensateTournament(tournament);
     }
   }
@@ -60,7 +62,7 @@ public class TournamentService {
 
     players.sort(Comparator.comparingInt(PlayerDto::getScore).reversed());
 
-    for (int i = 0; i < players.size(); i++) {
+    for (int i = 0; i < players.size(); i += 2) {
       GameDto game = new GameDto();
       game.setTournamentId(tournament.getId());
       game.setFirstPlayerId(players.get(i).getId());
@@ -103,6 +105,19 @@ public class TournamentService {
         .map(entry -> new TournamentWinnerDto(entry.getKey(), entry.getValue()))
         .sorted(Collections.reverseOrder(Comparator.comparingInt(p -> p.getPlayer().getScore())))
         .toList();
+  }
+
+  public ResponseEntity<Map<Integer, List<GameDto>>> getTournamentInfo(LocalDate date) {
+    Tournament tournament = tournamentRepository.findByDate(date);
+
+    if (tournament == null) {
+      return ResponseEntity.notFound().build();
+    }
+
+    List<GameDto> tournamentGames = gameProxy.getAllGamesByTournamentId(tournament.getId());
+    Map<Integer, List<GameDto>> tournamentInfo = tournamentGames.stream().collect(Collectors.groupingBy(GameDto::getStage));
+
+    return ResponseEntity.ok(tournamentInfo);
   }
 
   private void compensateTournament(Tournament tournament) {

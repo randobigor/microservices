@@ -1,7 +1,8 @@
 package com.pingpongchamp.tournament_service.proxy;
 
 
-import com.pingpongchamp.common.dto.PlayerDto;
+
+import com.pingpongchamp.tournament_service.dto.PlayerDto;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
