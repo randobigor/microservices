@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 
 import jakarta.annotation.Resource;

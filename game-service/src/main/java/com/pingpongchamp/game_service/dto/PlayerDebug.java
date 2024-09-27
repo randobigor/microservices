@@ -17,5 +17,5 @@ import lombok.Setter;
 @Builder
 public class PlayerDebug {
   private Object player;
-  private String port;
+  private String environment;
 }

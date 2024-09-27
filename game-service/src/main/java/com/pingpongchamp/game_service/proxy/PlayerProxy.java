@@ -11,7 +11,7 @@ public interface PlayerProxy {
 
   @GetMapping("/player/{id}/lb")
   PlayerDebug getPlayerByIdLb(@PathVariable long id);
-  
+
   @GetMapping("/player/exists/{id}")
   boolean playerExistsById(@PathVariable long id);
 }

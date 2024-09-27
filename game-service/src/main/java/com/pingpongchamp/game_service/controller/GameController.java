@@ -34,9 +34,6 @@ import lombok.AllArgsConstructor;
 public class GameController {
 
   @Resource
-  private GameMapper gameMapper;
-
-  @Resource
   private GameRepository gameRepository;
 
   @Resource
@@ -54,7 +51,7 @@ public class GameController {
   public List<Game> getAllGamesByTournamentId(@RequestParam long tournamentId) {
     return gameRepository.findAllByTournamentId(tournamentId);
   }
-  
+
   //For testing purposes only
   @GetMapping("/get-player-by-id/{id}")
   public PlayerDebug getPlayerById(@PathVariable long id) {

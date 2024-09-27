@@ -23,12 +23,14 @@ import java.util.stream.Collectors;
 import feign.FeignException;
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author ibodnar@amsoft-group.com
  */
 
 @Service
+@Slf4j
 public class TournamentService {
 
   @Resource
